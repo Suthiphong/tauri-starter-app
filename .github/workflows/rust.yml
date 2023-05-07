@@ -1,8 +1,13 @@
-name: 'test-on-pr'
-on: [pull_request]
+name: 'publish'
+on:
+  push:
+    branches:
+      - master
 
 jobs:
-  test-tauri:
+  publish-tauri:
+    permissions:
+      contents: write
     strategy:
       fail-fast: false
       matrix:
@@ -25,5 +30,9 @@ jobs:
       - name: install frontend dependencies
         run: yarn install # change this to npm or pnpm depending on which one you use
       - uses: tauri-apps/tauri-action@v0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tagName: 'x' # the action automatically replaces \_\_VERSION\_\_ with the app version
+          releaseName: 'x'
+          releaseBody: 'See the assets to download this version and install.'
+          releaseDraft: true
+          prerelease: false
