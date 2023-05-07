@@ -5,7 +5,6 @@
     "devPath": "http://localhost:1420",
     "distDir": "../dist",
     "withGlobalTauri": false,
-    "target": "x86_64-pc-windows-msvc"
   },
   "package": {
     "productName": "test-release-tauri",
